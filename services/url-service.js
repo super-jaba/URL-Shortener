@@ -14,7 +14,7 @@ class UrlService {
             // Generate new random url
             const shortUrl = shortid.generate();
             const urlDocument = await urlModel.create({ fromUrl, shortUrl });
-            return `${protocol}://${domain}/${urlDocument.shortUrl}`;
+            return `${protocol}://${domain}:${port}/${urlDocument.shortUrl}`;
         } else {
             // Generate custom url
             const candidate = await urlModel.findOne({ shortUrl: toUrl });
@@ -24,7 +24,7 @@ class UrlService {
 
             const urlDocument = await urlModel.create({ fromUrl, shortUrl: toUrl });
 
-            return `${protocol}://${domain}/${urlDocument.shortUrl}`;
+            return `${protocol}://${domain}:${port}/${urlDocument.shortUrl}`;
         }
     }
 

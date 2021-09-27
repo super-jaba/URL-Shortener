@@ -1,4 +1,4 @@
-const validUrl = require('valid-url');
+const urlValidation = require('url-validation');
 
 const ApiError = require('../exceptions/api-error');
 const urlService = require("../services/url-service");
@@ -21,7 +21,7 @@ class ShortenerController {
             const urlToShort = req.body.url;
             const urlCustomName = req.body.custom;
 
-            if (!validUrl.isUri(urlToShort)) {
+            if (!urlValidation(urlToShort)) {
                 throw ApiError.BadRequest('Specified URL is not correct.');
             }
 
